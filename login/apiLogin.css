@@ -1,7 +1,4 @@
 body{
-    background-image: url("./icons/background.jpg");
-    background-repeat: no-repeat;
-    background-size: cover;
     font-family: sans-serif;
 }
 .flex-container{

@@ -1,6 +1,6 @@
 function register() {
     console.log("registerin başı");
-    const url = 'http://143.110.166.213:4000/users/sign-up'; // API'nin URL'si
+    const url = 'http://143.110.166.213:4000/users/sign-up';
 
     var username1 = document.getElementById("username").value;
     var email1 = document.getElementById("email").value;
@@ -15,29 +15,26 @@ function register() {
     fetch (url, {
         method: 'POST',
         headers: {
-            "Content-type": "application/json; charset = UTF-8"
+            "Content-Type": "application/json"
         },
         body: JSON.stringify({
             username : username1,
             email : email1,
             password : password1
-        }),
+        })
     })
     .then(response => {
-        if (response.status = "success") {
-            
-            console.log("ifin içi");
-            // window.location.href = "../login/apiLogin.html";
-        }else{
-            alert("eksik veya hatalı yazım!!")
+        if (response.status === 200 && response.ok) {
+            alert("Kayıt başarılı!");
+            window.location.href = "../login/apiLogin.html";
+        } else {
+            alert("Eksik veya hatalı yazım!");
         }
-        console.log("RESPONSE!",response);
+        console.log("RESPONSE!", response);
+        return response.json(); // response body'sini çözümler
     })
-    
-    // .then(response => console.log(response))
-    .then((data) => console.log("datayı logluyom", data))
-    .catch(error => console.log("erroru logluyorum : ", error));
-    
+    .then((data) => console.log("data: ", data)) // response body'sini loglar
+    .catch(error => console.log("error: ", error));
 }
 
    
